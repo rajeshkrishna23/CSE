@@ -1,4 +1,15 @@
 <?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+ 
+<?php
 // Check existence of id parameter before processing further
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Include config file
@@ -25,7 +36,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 
                 // Retrieve individual field value
                 $name = $row["name"];
-                $email=$row["email"];
+                $email=$row["Email"];
                 $address = $row["address"];
                 $salary = $row["salary"];
             } else{
@@ -77,7 +88,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     </div>
                     <div class="form-group">
                         <label>Email-ID</label>
-                        <p class="form-control-static"><?php echo $row["email"]; ?></p>
+                        <p class="form-control-static"><?php echo $row["Email"]; ?></p>
                     </div>
                     <div class="form-group">
                         <label>Address</label>

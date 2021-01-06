@@ -1,3 +1,14 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +43,10 @@
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Employees Details</h2>
                         <a href="create.php" class="btn btn-success pull-right">Add New Employee</a>
+                    
                     </div>
+                   
+                    
                     <?php
                     // Include config file
                     require_once "config.php";
@@ -83,7 +97,9 @@
                     ?>
                 </div>
             </div>        
+            <a href="welcome.php" class="btn btn-success pull-right">Back</a> 
         </div>
     </div>
+   
 </body>
 </html>
